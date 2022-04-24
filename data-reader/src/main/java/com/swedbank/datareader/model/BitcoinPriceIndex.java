@@ -9,6 +9,7 @@ import org.springframework.data.elasticsearch.annotations.Field;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
@@ -16,38 +17,31 @@ import java.util.UUID;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Document(indexName = "response_list")
-public class ResponseMetric {
+@Document(indexName = "bitcoin_price_list")
+public class BitcoinPriceIndex {
     @Id
     private UUID id = UUID.randomUUID();
 
     @Field(type= FieldType.Date)
     private Date timestamp;
 
-    @Field(type = FieldType.Long)
-    private long requestCount;
+    @Field(type = FieldType.Double)
+    private BigDecimal usd;
 
     @Field(type = FieldType.Double)
-    private double averageResponseTime;
+    private BigDecimal eur;
 
-    @Field(type = FieldType.Long)
-    private long maxResponseTime;
-
-    @Field(type = FieldType.Long)
-    private long minResponseTime;
-
-    @Field(type = FieldType.Long)
-    private long totalResponseTime;
+    @Field(type = FieldType.Double)
+    private BigDecimal gbp;
 
     @Override
     public String toString() {
-        return "ResponseMetric{" +
-                "timestamp=" + timestamp +
-                ", requestCount=" + requestCount +
-                ", averageResponseTime=" + averageResponseTime +
-                ", maxResponseTime=" + maxResponseTime +
-                ", minResponseTime=" + minResponseTime +
-                ", totalResponseTime=" + totalResponseTime +
+        return "BitcoinPriceIndex{" +
+                "id=" + id +
+                ", timestamp=" + timestamp +
+                ", usd=" + usd +
+                ", eur=" + eur +
+                ", gbp=" + gbp +
                 '}';
     }
 }
