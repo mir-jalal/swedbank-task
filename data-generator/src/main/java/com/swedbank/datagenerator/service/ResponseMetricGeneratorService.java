@@ -3,6 +3,7 @@ package com.swedbank.datagenerator.service;
 import com.swedbank.datagenerator.model.ResponseMetric;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Service
@@ -29,7 +30,7 @@ public class ResponseMetricGeneratorService {
             totalResponseTime += responseTime;
         }
 
-        ResponseMetric responseMetric = new ResponseMetric(System.currentTimeMillis(), randomNumber,
+        ResponseMetric responseMetric = new ResponseMetric(new Date(System.currentTimeMillis()), randomNumber,
                 ((double) totalResponseTime / (double) randomNumber),
                 maxResponseTime, minResponseTime, totalResponseTime);
 

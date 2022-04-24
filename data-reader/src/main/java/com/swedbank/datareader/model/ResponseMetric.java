@@ -1,28 +1,43 @@
-package com.swedbank.datagenerator.model;
+package com.swedbank.datareader.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class ResponseMetric implements Serializable {
-    @JsonProperty("timestamp")
+@Document(indexName = "response_list")
+public class ResponseMetric {
+    @Id
+    private UUID id = UUID.randomUUID();
+
+    @Field(type= FieldType.Date)
     private Date timestamp;
-    @JsonProperty("requestCount")
-    private int requestCount;
-    @JsonProperty("averageResponseTime")
+
+    @Field(type = FieldType.Long)
+    private long requestCount;
+
+    @Field(type = FieldType.Double)
     private double averageResponseTime;
-    @JsonProperty("maxResponseTime")
+
+    @Field(type = FieldType.Long)
     private long maxResponseTime;
-    @JsonProperty("minResponseTime")
+
+    @Field(type = FieldType.Long)
     private long minResponseTime;
-    @JsonProperty("totalResponseTime")
-    private int totalResponseTime;
+
+    @Field(type = FieldType.Long)
+    private long totalResponseTime;
 
     @Override
     public String toString() {
