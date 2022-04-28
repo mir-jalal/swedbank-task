@@ -5,6 +5,16 @@ Stack:
 * RabbitMQ
 * ElasticSearch + Kibana
 
+Flow:
+```mermaid
+graph LR
+    Generator -- sends --> mq[/RabbitMQ/]
+    mq[/RabbitMQ/] -- receives --> Receiver
+    Receiver -- stores --> db([ElasticSearch])
+    kibana[\Kibana/] -- shows --- db([ElasticSearch])
+
+```
+
 > You can test [this link](http://34.88.126.223:5601) to open `Kibana Dashboard` in your browser.
 > If you cannot open the link please manually copy and paste `http://34.88.126.223:5601` in your browser
 > 
